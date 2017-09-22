@@ -205,6 +205,7 @@ AppRegistry.registerComponent('myproject', () => swiper);
 | dotStyle | - | `object` | Allow custom the active-dot element. |
 | dotColor | - | `string` | Allow custom the active-dot element. |
 | activeDotColor | - | `string` | Allow custom the active-dot element. |
+| enableZoom | false | `bool` | Allow Zoomable element. |
 | activeDotStyle | - | `object` | Allow custom the active-dot element. |
 
 #### Autoplay

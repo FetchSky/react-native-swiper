@@ -12,7 +12,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Platform,
-  ActivityIndicator
+  ActivityIndicator,
+  ViewPagerAndroid
 } from "react-native";
 import { ViewPagerZoom } from "react-native-image-zoom";
 
@@ -133,6 +134,7 @@ export default class extends Component {
     activeDotStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     dotColor: PropTypes.string,
     activeDotColor: PropTypes.string,
+    enableZoom: PropTypes.bool,
     /**
      * Called when the index has changed because the user swiped.
      */
@@ -163,6 +165,7 @@ export default class extends Component {
     autoplayTimeout: 2.5,
     autoplayDirection: true,
     index: 0,
+    enableZoom: false,
     onIndexChanged: () => null
   };
 
@@ -644,6 +647,22 @@ export default class extends Component {
         >
           {pages}
         </ScrollView>
+      );
+    }
+    if (this.props.enableZoom) {
+      return (
+        <ViewPagerAndroid
+          ref={this.refScrollView}
+          {...this.props}
+          initialPage={
+            this.props.loop ? this.state.index + 1 : this.state.index
+          }
+          onPageSelected={this.onScrollEnd}
+          key={pages.length}
+          style={[styles.wrapperAndroid, this.props.style]}
+        >
+          {pages}
+        </ViewPagerAndroid>
       );
     }
     return (
